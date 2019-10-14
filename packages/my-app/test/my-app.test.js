@@ -2,14 +2,19 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../my-app.js';
 
+const later = () => new Promise(resolve => setTimeout(resolve, 50));
+
 describe('MyApp', () => {
   it('has page "main" by default', async () => {
     const el = await fixture(html`
       <my-app></my-app>
     `);
+    const shadow = el.shadowRoot;
+    const main = shadow.querySelector('main');
+    const { page } = main.dataset;
 
-    expect(el.page).to.equal('main');
-    expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
+    expect(page).to.equal('main');
+    expect(main).lightDom.to.equal(`
       <page-main></page-main>
     `);
   });
@@ -19,7 +24,7 @@ describe('MyApp', () => {
       <my-app page="pageOne"></my-app>
     `);
     expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
-      <page-one></page-one>
+      <page-one title="Hey there"></page-one>
     `);
   });
 
@@ -28,7 +33,11 @@ describe('MyApp', () => {
       <my-app></my-app>
     `);
     el.shadowRoot.querySelectorAll('header a')[2].click();
+    await later();
+    const shadow = el.shadowRoot;
+    const main = shadow.querySelector('main');
+    const { page } = main.dataset;
 
-    expect(el.page).to.equal('about');
+    expect(page).to.equal('about');
   });
 });

@@ -98,8 +98,8 @@ function styles() {
   `;
 }
 
-export const MyApp = component(el => {
-  const [page, setPage] = useState('main');
+const MyApp = el => {
+  const [page, setPage] = useState(el.page || 'main');
 
   function clickPageLink(ev) {
     ev.preventDefault();
@@ -124,7 +124,7 @@ export const MyApp = component(el => {
       </ul>
     </header>
 
-    <main>
+    <main data-page="${page}">
       ${renderPage(page)}
     </main>
 
@@ -133,4 +133,8 @@ export const MyApp = component(el => {
       <a target="_blank" rel="noopener noreferrer" href="https://github.com/open-wc">open-wc</a>.
     </p>
   `;
-});
+};
+
+MyApp.observedAttributes = ['page'];
+
+export const MyAppElement = component(MyApp);

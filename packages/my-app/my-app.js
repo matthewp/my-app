@@ -1,3 +1,3 @@
-import { MyApp } from './src/MyApp.js';
+import { MyAppElement } from './src/MyApp.js';
 
-window.customElements.define('my-app', MyApp);
+window.customElements.define('my-app', MyAppElement);

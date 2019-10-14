@@ -5,7 +5,7 @@ import '../page-one.js';
 const later = () => new Promise(resolve => setTimeout(resolve, 50));
 
 describe('PageOne', () => {
-  it.only('has a default title "Hey there" and counter 5', async () => {
+  it('has a default title "Hey there" and counter 5', async () => {
     const el = await fixture(html`
       <page-one></page-one>
     `);
@@ -31,6 +31,7 @@ describe('PageOne', () => {
       <page-one></page-one>
     `);
     el.shadowRoot.querySelector('button').click();
+    await later();
 
     expect(el.counter).to.equal(6);
   });
