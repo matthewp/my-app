@@ -1,3 +1,3 @@
-import { PageOne } from './src/PageOne.js';
+import { PageOneElement } from './src/PageOne.js';
 
-window.customElements.define('page-one', PageOne);
+window.customElements.define('page-one', PageOneElement);

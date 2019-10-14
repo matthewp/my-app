@@ -1,8 +1,12 @@
-import { html, css, LitElement } from 'lit-element';
+import { html } from 'lit-html';
+import { component } from 'haunted';
 
-export class PageMain extends LitElement {
-  static get styles() {
-    return css`
+function PageMain() {
+  const title = this.title || 'Hello open-wc world!';
+  const logo = this.logo || html``;
+
+  return html`
+    <style>
       :host {
         display: block;
         padding: 25px;
@@ -21,35 +25,20 @@ export class PageMain extends LitElement {
           transform: rotate(360deg);
         }
       }
-    `;
-  }
+    </style>
 
-  static get properties() {
-    return {
-      title: { type: String },
-      logo: { type: Function },
-    };
-  }
-
-  constructor() {
-    super();
-    this.title = 'Hello open-wc world!';
-    this.logo = html``;
-  }
-
-  render() {
-    return html`
-      ${this.logo}
-      <h1>${this.title}</h1>
-      <p>Edit <code>src/MyApp.js</code> and save to reload.</p>
-      <a
-        class="app-link"
-        href="https://open-wc.org/developing/#examples"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Code examples
-      </a>
-    `;
-  }
+    ${logo}
+    <h1>${title}</h1>
+    <p>Edit <code>src/MyApp.js</code> and save to reload.</p>
+    <a
+      class="app-link"
+      href="https://open-wc.org/developing/#examples"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Code examples
+    </a>
+  `;
 }
+
+export const PageMainElement = component(PageMain);

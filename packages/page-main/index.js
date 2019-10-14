@@ -1,1 +1,1 @@
-export { PageMain } from './src/PageMain.js';
+export { PageMainElement } from './src/PageMain.js';

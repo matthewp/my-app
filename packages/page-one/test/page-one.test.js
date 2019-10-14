@@ -2,11 +2,14 @@ import { html, fixture, expect } from '@open-wc/testing';
 
 import '../page-one.js';
 
+const later = () => new Promise(resolve => setTimeout(resolve, 50));
+
 describe('PageOne', () => {
-  it('has a default title "Hey there" and counter 5', async () => {
+  it.only('has a default title "Hey there" and counter 5', async () => {
     const el = await fixture(html`
       <page-one></page-one>
     `);
+    await later();
 
     expect(el.title).to.equal('Hey there');
     expect(el.counter).to.equal(5);

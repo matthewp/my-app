@@ -1,1 +1,1 @@
-export { PageOne } from './src/PageOne.js';
+export { PageOneElement } from './src/PageOne.js';

@@ -1,3 +1,3 @@
-import { PageMain } from './src/PageMain.js';
+import { PageMainElement } from './src/PageMain.js';
 
-window.customElements.define('page-main', PageMain);
+window.customElements.define('page-main', PageMainElement);
